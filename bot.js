@@ -10,13 +10,42 @@ client.on('ready', () => {
 
 
 client.on('message', msg =>  {
-  if (msg.content === '!Banres-dollar') {
+
+  if(msg.content === "!dollar-help") {
+    msg.reply(
+      `
+      Commands:
+      Help: !dollar-help
+      Banreservas: !Banreservas
+      ScotiaBank: !Scotiabank
+      `
+    )
+  }
+
+  if (msg.content === '!Banreservas') {
     const scrappedData = Promise.resolve(scrape.scrapeBanresData);
     scrappedData.then((data) => {
-        msg.reply(`${data.title} Compra: ${data.buys} Venta: ${data.sells}`);
+        msg.reply(`**Banreservas** Compra: **${data.buys}** Venta: **${data.sells}**`);
     });
-    
+  }
+
+  if(msg.content === "!Scotiabank") {
+    const scrappedData = Promise.resolve(scrape.scrapeScotiaBankData);
+    scrappedData.then((data) => {
+      console.log(data);
+      msg.reply(`**Scotiabank** Compra: **${data.buys}** Venta: **${data.sells}**`);
+    });
+  }
+
+  if(msg.content === "!Popular") {
+    const scrappedData = Promise.resolve(scrape.scrapePopularData);
+    scrappedData.then((data) => {
+      console.log(data);
+      msg.reply(`**Banco Popular Dominicano** -  In development`);
+    });
   }
 });
+
+
 
 client.login(process.env.BOT_TOKEN);
