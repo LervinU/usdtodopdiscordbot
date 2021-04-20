@@ -32,7 +32,6 @@ client.on('message', msg =>  {
   if(msg.content === "!Scotiabank") {
     const scrappedData = Promise.resolve(scrape.scrapeScotiaBankData);
     scrappedData.then((data) => {
-      console.log(data);
       msg.reply(`**Scotiabank** Compra: **${data.buys}** Venta: **${data.sells}**`);
     });
   }
@@ -40,7 +39,6 @@ client.on('message', msg =>  {
   if(msg.content === "!Popular") {
     const scrappedData = Promise.resolve(scrape.scrapePopularData);
     scrappedData.then((data) => {
-      console.log(data);
       msg.reply(`**Banco Popular Dominicano** -  In development`);
     });
   }
