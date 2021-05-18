@@ -64,6 +64,24 @@ client.on('message', msg =>  {
       msg.reply(`**Banco Caribe** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
     });
   }
+
+  if(msg.content === "!APAP") {
+    fetch(`${process.env.DOLLAR_API_URL}/APAP`)
+    .then(res => res.json())
+    .then(data => {
+      msg.reply(`**APAP** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+    });
+  }
+  // if(msg.content === "!All") {
+  //   fetch(`${process.env.DOLLAR_API_URL}/AllBanks`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     data.forEach(element => {
+        
+  //     });
+  //     msg.reply(`**${data.title}** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+  //   });
+  // }
 });
 
 
