@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const scrape =  require('./src/scrape');
 const fetch = require('node-fetch');
+const { utils } = require('./src/utils/utils');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -30,7 +31,7 @@ client.on('message', msg =>  {
     fetch(`${process.env.DOLLAR_API_URL}/Banreservas`)
       .then(res => res.json())
       .then(data => {
-        msg.reply(`**Banreservas** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+        msg.reply(`**Banreservas** ${utils.createReply(data)}`)
       });
   }
 
@@ -38,7 +39,7 @@ client.on('message', msg =>  {
     fetch(`${process.env.DOLLAR_API_URL}/Scotiabank`)
     .then(res => res.json())
     .then(data => {
-      msg.reply(`**Scotiabank** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+      msg.reply(`**Scotiabank** ${utils.createReply(data)}`)
     });
   }
 
@@ -46,7 +47,7 @@ client.on('message', msg =>  {
     fetch(`${process.env.DOLLAR_API_URL}/Popular`)
     .then(res => res.json())
     .then(data => {
-      msg.reply(`**Banco Popular** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+      msg.reply(`**Banco Popular** ${utils.createReply(data)}`)
     });
   }
 
@@ -54,14 +55,14 @@ client.on('message', msg =>  {
     fetch(`${process.env.DOLLAR_API_URL}/BHD`)
     .then(res => res.json())
     .then(data => {
-      msg.reply(`**BHD Leon** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+      msg.reply(`**BHD Leon** ${utils.createReply(data)}`)
     });
   }
   if(msg.content === "!BancoCaribe") {
     fetch(`${process.env.DOLLAR_API_URL}/Bancocaribe`)
     .then(res => res.json())
     .then(data => {
-      msg.reply(`**Banco Caribe** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+      msg.reply(`**Banco Caribe** ${utils.createReply(data)}`)
     });
   }
 
@@ -69,19 +70,11 @@ client.on('message', msg =>  {
     fetch(`${process.env.DOLLAR_API_URL}/APAP`)
     .then(res => res.json())
     .then(data => {
-      msg.reply(`**APAP** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
+      msg.reply(`**APAP** ${utils.createReply(data)}`)
     });
   }
-  // if(msg.content === "!All") {
-  //   fetch(`${process.env.DOLLAR_API_URL}/AllBanks`)
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     data.forEach(element => {
-        
-  //     });
-  //     msg.reply(`**${data.title}** Compra: **${data.buysDollar}** Venta: **${data.sellsDollar}**`)
-  //   });
-  // }
+
+
 });
 
 
