@@ -6,6 +6,7 @@ const COMMANDS = {
     GET_PROMERICA: "!Promerica",
     GET_APAP: "!APAP",
     GET_BHD: "!BHD",
+    GET_ALL_BANKS: "!AllBanks",
 
     GET_HELP: "!Banks",
 }

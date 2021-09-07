@@ -24,7 +24,8 @@ client.on('message', msg =>  {
       **BHD**: !BHD
       **Popular**: !Popular
       **Banco Caribe**: !BancoCaribe
-      **Promerica: !Promerica
+      **Promerica**: !Promerica
+      **Todos los bancos**: !AllBanks
       `
     )
   }
@@ -85,6 +86,19 @@ client.on('message', msg =>  {
     });
   }
 
+  if(msg.content === COMMANDS.GET_ALL_BANKS) {
+    let banksData = [];
+    fetch(`${process.env.DOLLAR_API_URL}/allbanks`)
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(bank => {
+        banksData.push("`" + utils.createReply(bank.name ,bank) + "`");
+      })
+      const result = banksData.join('\n');
+      msg.channel.send(result);
+    });
+
+  }
 
 });
 
