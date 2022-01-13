@@ -101,7 +101,3 @@ rl.on("line", (line) => {
     rl.close();
   }
 })
-
-rl.on('close', () => {
-  console.log('Good bye!')
-})
